@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/Home"
+        android:icon="@drawable/baseline_home_24"
+        android:title="Home" />
+
+    <item
+        android:id="@+id/Download"
+        android:icon="@drawable/baseline_arrow_circle_down_24"
+        android:title="Download" />
+
+    <item
+        android:id="@+id/Battery"
+        android:icon="@drawable/baseline_battery_charging_full_24"
+        android:title="Battery" />
+
+</menu>

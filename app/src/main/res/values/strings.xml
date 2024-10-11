@@ -1,0 +1,27 @@
+<resources>
+    //splashscreen
+    <string name="app_name">hdWallpaper</string>
+    <string name="tv_appName">Dreamscape HD</string>
+    <string name="tv_appline">Where Every Pixel Inspires</string>
+
+
+    //Main screen string
+    <string name="tb_appname">Notes App</string>
+    <string name="tb_main_wcback">Welcome Back</string>
+    <string name="tb_main_signnote">Sign in to continue</string>
+    <string name="et_main_emailhint">Email</string>
+    <string name="et_main_passhint">Password</string>
+    <string name="bt_main_SignIn">Sign In</string>
+    <string name="tb_main_noaccount">Donot have any account?</string>
+
+    //signup screen string
+    <string name="tb_welcome">Welcome,</string>
+    <string name="tb_signupline">Sign Up to Personalize Your Space!</string>
+    <string name="tb_email">Email</string>
+    <string name="tb_password">Password</string>
+    <string name="tb_confirm_password">Confirm Password</string>
+    <string name="bt_signup">Sign Up</string>
+    <string name="tb_login_redirect">Already an user? Login</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

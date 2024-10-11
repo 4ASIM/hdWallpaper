@@ -1,0 +1,5 @@
+<!-- res/drawable/rounded_top_corners.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@android:color/white"/> <!-- Background color -->
+    <corners android:topLeftRadius="55dp" android:topRightRadius="55dp" android:bottomLeftRadius="0dp" android:bottomRightRadius="0dp"/> <!-- Only top corners rounded -->
+</shape>

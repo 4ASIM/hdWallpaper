@@ -1,0 +1,39 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- VideoView for the background video -->
+    <VideoView
+        android:id="@+id/vv_battery"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center" />
+
+    <!-- TextViews placed on top of the VideoView -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tv_text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Battery Percentage"
+            android:textSize="24sp"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/tv_text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Charging Status"
+            android:textSize="18sp"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="8dp" />
+    </LinearLayout>
+
+</FrameLayout>
