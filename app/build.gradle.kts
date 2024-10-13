@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -56,4 +57,7 @@ dependencies {
 
     // Fragment KTX (for viewModels delegate)
     implementation ("androidx.fragment:fragment-ktx:1.6.0")
+
+    //firebase
+    implementation ("com.google.firebase:firebase-auth:21.1.0")
 }

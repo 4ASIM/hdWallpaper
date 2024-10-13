@@ -1,11 +1,11 @@
 package com.example.hdwallpaper
 
-import BatteryFragment
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.hdwallpaper.adapter.AdapterViewPager
+import com.example.hdwallpaper.fragment.BatteryFragment
 
 import com.example.hdwallpaper.fragment.DownloadFragment
 import com.example.hdwallpaper.fragment.HomeFragment

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "910340490807",
+    "project_id": "hdwallpaper-aa680",
+    "storage_bucket": "hdwallpaper-aa680.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:910340490807:android:0c0fabd8ac4c42178a61b2",
+        "android_client_info": {
+          "package_name": "com.example.hdwallpaper"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmrJ0vrt8mLZCuK1aIQyi1dsZGo8cpd18"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

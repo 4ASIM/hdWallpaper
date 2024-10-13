@@ -1,4 +1,5 @@
-import android.net.Uri
+package com.example.hdwallpaper.fragment
+import BatteryViewModel
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -24,7 +25,7 @@ class BatteryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Observing LiveData from ViewModel
+
         batteryViewModel.batteryPercentage.observe(viewLifecycleOwner, Observer { batteryPct ->
             binding.tvText1.text = "$batteryPct%"
         })

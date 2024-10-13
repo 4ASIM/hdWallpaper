@@ -23,10 +23,10 @@ class Battery : AppCompatActivity() {
             val level: Int = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1)
             val scale: Int = intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1)
 
-            // Calculate battery percentage
+
             val batteryPct: Int = (level / scale.toFloat() * 100).toInt()
 
-            // Update the UI based on charging state
+
             if (isCharging) {
                 tvText1.text = "$batteryPct%"
                 tvText2.text = "Connected"
@@ -41,32 +41,31 @@ class Battery : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_battery)
 
-        // Initialize VideoView and TextViews
         val videoView: VideoView = findViewById(R.id.vv_battery)
         tvText1 = findViewById(R.id.tv_text1)
         tvText2 = findViewById(R.id.tv_text2)
 
-        // Set up video playback
+
         val videoPath = "android.resource://" + packageName + "/" + R.raw.appbattery
         val uri: Uri = Uri.parse(videoPath)
         videoView.setVideoURI(uri)
 
-        // Start video playback
+
         videoView.start()
 
-        // Restart video after it finishes
+
         videoView.setOnCompletionListener {
             videoView.start()
         }
 
-        // Register the battery status receiver
+
         val filter = IntentFilter(Intent.ACTION_BATTERY_CHANGED)
         registerReceiver(batteryReceiver, filter)
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        // Unregister the receiver to avoid memory leaks
+
         unregisterReceiver(batteryReceiver)
     }
 }
