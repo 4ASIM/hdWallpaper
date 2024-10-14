@@ -1,13 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.makeramen.roundedimageview.RoundedImageView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:scaleType="fitXY"
-    android:id="@+id/staggeredImages"
-    android:layout_marginStart="15dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    android:layout_marginTop="15dp"
-    app:riv_corner_radius="12dp"
-    android:adjustViewBounds="true"/>
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/staggeredImages"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:layout_marginStart="15dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_marginTop="15dp"
+        app:riv_corner_radius="12dp"
+        android:adjustViewBounds="true" />
+
+    <ImageView
+        android:id="@+id/downloadIcon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/baseline_home_24"
+        android:layout_centerInParent="true"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone" />
+</RelativeLayout>
