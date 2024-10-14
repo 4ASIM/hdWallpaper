@@ -11,5 +11,11 @@ class imageselection : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_imageselection)
 
+        val imageView = findViewById<ImageView>(R.id.fullImageView)
+        val imageUrl = intent.getStringExtra("IMAGE_RES_ID")
+
+        if (imageUrl != null) {
+            Glide.with(this).load(imageUrl).into(imageView)
+        }
     }
-    }
+}

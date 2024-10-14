@@ -1,13 +1,12 @@
 package com.example.hdwallpaper.dataclasses
 
 class dataclass {
-    var imageURL: Int? = null
+    var imageURL: String? = null
+    var caption: String? = null
 
     constructor()
-
-    constructor(imageURL: Int?, caption: String?) {
+    constructor(imageURL: String?, caption: String?) {
         this.imageURL = imageURL
-
+        this.caption = caption
     }
-
 }

@@ -20,6 +20,13 @@ class DashBoard : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dash_board)
 
+
+        // dashbaord toolbar
+//        val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.toolbar)
+//        setSupportActionBar(toolbar)
+//        // Disable the default title
+//        supportActionBar?.setDisplayShowTitleEnabled(false)
+
         // Initialize ViewPager2
         viewPager = findViewById(R.id.vp_dashbaord)
 
