@@ -7,12 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.example.hdwallpaper.R
 import com.example.hdwallpaper.adapter.downloadadapter
 import com.example.hdwallpaper.databinding.FragmentDownloadBinding
-import com.example.hdwallpaper.databinding.FragmentHomeBinding
-import com.example.hdwallpaper.dataclasses.dataclass
-import com.example.hdwallpaper.dataclasses.downloaddataclass
+import com.example.hdwallpaper.roomdb.AppDatabase
+import com.example.hdwallpaper.roomdb.ImageDao
+import com.example.hdwallpaper.roomdb.ImageEntity
+
+import com.google.firebase.auth.FirebaseAuth
 
 class DownloadFragment : Fragment() {
 
@@ -20,8 +21,9 @@ class DownloadFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var dataList: ArrayList<downloaddataclass>
     private lateinit var adapter: downloadadapter
+    private lateinit var imageDao: ImageDao
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,29 +32,32 @@ class DownloadFragment : Fragment() {
         _binding = FragmentDownloadBinding.inflate(inflater, container, false)
         val view = binding.root
 
+        auth = FirebaseAuth.getInstance()
+
         recyclerView = binding.rvImages
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
 
-        // Initialize the list with data class instances
-        dataList = arrayListOf(
-            downloaddataclass(R.drawable.tree1, "Sample Image 1"),
-            downloaddataclass(R.drawable.tree2, "Sample Image 2"),
-            downloaddataclass(R.drawable.tree4, "Sample Image 3"),
-            downloaddataclass(R.drawable.tree5, "Sample Image 3"),
-            downloaddataclass(R.drawable.tree6, "Sample Image 3"),
-            downloaddataclass(R.drawable.tree1, "Sample Image 3"),
-            downloaddataclass(R.drawable.tree2, "Sample Image 3"),
-            downloaddataclass(R.drawable.tree4, "Sample Image 3"),
-            downloaddataclass(R.drawable.tree5, "Sample Image 3"),
-            downloaddataclass(R.drawable.tree1, "Sample Image 3"),
-            downloaddataclass(R.drawable.wallpaperapplication, "Sample Image 4")
-        )
 
-        adapter = downloadadapter(dataList, requireContext())
-        recyclerView.adapter = adapter
+        val db = AppDatabase.getDatabase(requireContext())
+        imageDao = db.imageDao()
+
+        val currentUser = auth.currentUser
+        currentUser?.let {
+            loadUserImages(it.email!!)
+        }
 
         return view
+    }
+
+    private fun loadUserImages(email: String) {
+
+        imageDao.getImagesByEmail(email).observe(viewLifecycleOwner, { images ->
+            if (images != null) {
+                adapter = downloadadapter(images, requireContext())
+                recyclerView.adapter = adapter
+            }
+        })
     }
 
     override fun onDestroyView() {

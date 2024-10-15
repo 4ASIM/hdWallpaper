@@ -21,30 +21,24 @@ class ImageDownloadViewModel(application: Application) : AndroidViewModel(applic
     val downloadStatus = MutableLiveData<String>()
     private val imageDao = AppDatabase.getDatabase(application).imageDao()
 
-    // Save image to gallery and store the path in the Room database
     fun saveImageToGallery(bitmap: Bitmap, userEmail: String?) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                // Create directory for saving images
                 val directory = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "HDWallpapers")
                 if (!directory.exists()) {
                     directory.mkdir()
                 }
 
-                // Create the image file
                 val file = File(directory, "image_${System.currentTimeMillis()}.jpg")
                 val outputStream = FileOutputStream(file)
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
                 outputStream.flush()
                 outputStream.close()
 
-                // Notify gallery about the new image
                 MediaScannerConnection.scanFile(getApplication(), arrayOf(file.toString()), null, null)
 
-                // Save the image path to the Room database
                 saveImagePathToRoomDB(file.path, userEmail)
 
-                // Post success message to the UI
                 withContext(Dispatchers.Main) {
                     downloadStatus.postValue("Image saved to gallery")
                 }
@@ -58,7 +52,6 @@ class ImageDownloadViewModel(application: Application) : AndroidViewModel(applic
         }
     }
 
-    // Save image path to Room database
     private fun saveImagePathToRoomDB(imagePath: String, userEmail: String?) {
         userEmail?.let {
             viewModelScope.launch(Dispatchers.IO) {

@@ -4,8 +4,6 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -13,32 +11,28 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
-import com.example.hdwallpaper.R
+import com.example.hdwallpaper.databinding.ActivityImageDownloadAcitvityBinding
 import com.example.hdwallpaper.modelview.ImageDownloadViewModel
+import com.google.firebase.auth.FirebaseAuth
 
 class ImageDownloadAcitvity : AppCompatActivity() {
 
-    private lateinit var imageView: ImageView
-    private lateinit var downloadButton: Button
-    private var imageUrl: String? = null
-    private var imageBitmap: Bitmap? = null // Hold the bitmap here
-
-    // Use ViewModel delegation
+    private lateinit var binding: ActivityImageDownloadAcitvityBinding
+    private var imageBitmap: Bitmap? = null
     private val imageDownloadViewModel: ImageDownloadViewModel by viewModels()
+    val userEmail = FirebaseAuth.getInstance().currentUser?.email
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_image_download_acitvity)
 
-        imageView = findViewById(R.id.imageView)
-        downloadButton = findViewById(R.id.downloadButton)
+        binding = ActivityImageDownloadAcitvityBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        // Get the image URL from the intent
-        imageUrl = intent.getStringExtra("IMAGE_URL")
+        val imageUrl = intent.getStringExtra("IMAGE_URL")
 
-        // Load the image
+        // Load the image using Glide
         imageUrl?.let {
-            Glide.with(this).asBitmap().load(it).into(imageView)
+            Glide.with(this).asBitmap().load(it).into(binding.imageView)
         }
 
         // Observe download status LiveData from ViewModel
@@ -46,16 +40,16 @@ class ImageDownloadAcitvity : AppCompatActivity() {
             Toast.makeText(this, status, Toast.LENGTH_SHORT).show()
         })
 
-        // Set the download button to save the image from imageView
-        downloadButton.setOnClickListener {
-            imageView.isDrawingCacheEnabled = true
-            imageView.buildDrawingCache()
-            imageBitmap = Bitmap.createBitmap(imageView.drawingCache)
-            imageView.isDrawingCacheEnabled = false
+        // Set the FloatingActionButton to save the image from imageView
+        binding.fab.setOnClickListener {
+            binding.imageView.isDrawingCacheEnabled = true
+            binding.imageView.buildDrawingCache()
+            imageBitmap = Bitmap.createBitmap(binding.imageView.drawingCache)
+            binding.imageView.isDrawingCacheEnabled = false
 
             if (checkStoragePermissions()) {
                 // Save the image bitmap to the gallery
-                imageDownloadViewModel.saveImageToGallery(imageBitmap!!, "user@example.com") // replace with actual user email
+                imageDownloadViewModel.saveImageToGallery(imageBitmap!!, userEmail)
             } else {
                 requestStoragePermissions()
             }
