@@ -138,6 +138,20 @@
                     app:layout_constraintStart_toStartOf="@+id/cv_data3"
                     app:layout_constraintTop_toBottomOf="@+id/signin_email" />
 
+                <ImageView
+                    android:id="@+id/password_toggle"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignEnd="@+id/signin_password"
+                    android:layout_alignParentEnd="true"
+
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/hide"
+                    app:layout_constraintBottom_toBottomOf="@+id/signin_password"
+                    app:layout_constraintEnd_toEndOf="@+id/signin_password"
+                    app:layout_constraintTop_toTopOf="@+id/signin_password" />
+
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cv_button2"
                     android:layout_width="match_parent"

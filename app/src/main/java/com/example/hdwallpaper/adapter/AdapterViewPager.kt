@@ -12,7 +12,7 @@ class AdapterViewPager
         return fragmentList.size
     }
 
-    // Returns the fragment for a given position
+
     override fun createFragment(position: Int): Fragment {
         return fragmentList[position]
     }

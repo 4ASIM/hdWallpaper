@@ -30,17 +30,15 @@ class ImageDownloadAcitvity : AppCompatActivity() {
 
         val imageUrl = intent.getStringExtra("IMAGE_URL")
 
-        // Load the image using Glide
+
         imageUrl?.let {
             Glide.with(this).asBitmap().load(it).into(binding.imageView)
         }
 
-        // Observe download status LiveData from ViewModel
         imageDownloadViewModel.downloadStatus.observe(this, Observer { status ->
             Toast.makeText(this, status, Toast.LENGTH_SHORT).show()
         })
 
-        // Set the FloatingActionButton to save the image from imageView
         binding.fab.setOnClickListener {
             binding.imageView.isDrawingCacheEnabled = true
             binding.imageView.buildDrawingCache()
@@ -48,7 +46,7 @@ class ImageDownloadAcitvity : AppCompatActivity() {
             binding.imageView.isDrawingCacheEnabled = false
 
             if (checkStoragePermissions()) {
-                // Save the image bitmap to the gallery
+
                 imageDownloadViewModel.saveImageToGallery(imageBitmap!!, userEmail)
             } else {
                 requestStoragePermissions()

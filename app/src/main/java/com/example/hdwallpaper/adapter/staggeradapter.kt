@@ -24,26 +24,26 @@ class staggeradapter(private val dataList: ArrayList<dataclass>, private val con
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        // Load the image using Glide
+
         Glide.with(context)
             .load(dataList[position].imageURL)
             .placeholder(R.drawable.placeholder_image)
             .into(holder.staggeredImages)
         val params = holder.staggeredImages.layoutParams
         when (position % 8) {
-            0 -> params.height = 400
-            1 -> params.height = 300
-            2 -> params.height = 350
-            3 -> params.height = 400
-            4 -> params.height = 290
-            5 -> params.height = 350
-            6 -> params.height = 400
-            7 -> params.height = 300
+            0 -> params.height = 450
+            1 -> params.height = 350
+            2 -> params.height = 400
+            3 -> params.height = 450
+            4 -> params.height = 330
+            5 -> params.height = 400
+            6 -> params.height = 450
+            7 -> params.height = 350
         }
 
         holder.staggeredImages.layoutParams = params
 
-        // OnClick listener to start ImageDownloadActivity
+
         holder.staggeredImages.setOnClickListener {
             val imageUrl = dataList[position].imageURL
             if (!imageUrl.isNullOrEmpty()) {

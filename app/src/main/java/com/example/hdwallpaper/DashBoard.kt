@@ -27,24 +27,23 @@ class DashBoard : AppCompatActivity() {
 //        // Disable the default title
 //        supportActionBar?.setDisplayShowTitleEnabled(false)
 
-        // Initialize ViewPager2
+
         viewPager = findViewById(R.id.vp_dashbaord)
 
-        // Initialize BottomNavigationView
+
         bottomNavigationView = findViewById(R.id.bottomNavigation)
 
-        // Setup fragments list
         val fragments: List<Fragment> = listOf(
             HomeFragment(),
             DownloadFragment(),
             BatteryFragment()
         )
 
-        // Set up adapter with ViewPager2
+
         val adapter = AdapterViewPager(this, fragments)
         viewPager.adapter = adapter
 
-        // Handle ViewPager swipe to update BottomNavigationView
+
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
@@ -56,7 +55,7 @@ class DashBoard : AppCompatActivity() {
             }
         })
 
-        // Handle BottomNavigationView clicks to update ViewPager
+
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.Home -> viewPager.currentItem = 0

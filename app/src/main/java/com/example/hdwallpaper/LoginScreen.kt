@@ -2,6 +2,7 @@ package com.example.hdwallpaper
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.InputType
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -14,15 +15,13 @@ class LoginScreen : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginScreenBinding
     private val loginViewModel: LoginViewModel by viewModels()
-
+    private var isPasswordVisible = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
 
-
-        // Check if the user is already logged in
         if (FirebaseAuth.getInstance().currentUser != null) {
-            // User is already signed in, redirect to Dashboard
+
             startActivity(Intent(this, DashBoard::class.java))
             finish()
             return
@@ -32,7 +31,7 @@ class LoginScreen : AppCompatActivity() {
         binding = ActivityLoginScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Observing changes from the ViewModel
+
         loginViewModel.loginResult.observe(this, Observer { result ->
             when (result) {
                 "Success" -> {
@@ -45,12 +44,16 @@ class LoginScreen : AppCompatActivity() {
                 }
             }
         })
+        binding.passwordToggle.setOnClickListener {
+            togglePasswordVisibility()
+        }
+
 
         binding.signinButton.setOnClickListener {
             val email = binding.signinEmail.text.toString().trim()
             val password = binding.signinPassword.text.toString().trim()
 
-            // Delegate login operation to the ViewModel
+
             loginViewModel.login(email, password)
         }
 
@@ -58,5 +61,19 @@ class LoginScreen : AppCompatActivity() {
             startActivity(Intent(this, SignUp::class.java))
             finish()
         }
+    }
+    private fun togglePasswordVisibility() {
+        if (isPasswordVisible) {
+            // Hide password
+            binding.signinPassword.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+            binding.passwordToggle.setImageResource(R.drawable.hide)
+        } else {
+            // Show password
+            binding.signinPassword.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+            binding.passwordToggle.setImageResource(R.drawable.view)
+        }
+
+        binding.signinPassword.setSelection(binding.signinPassword.text?.length ?: 0)
+        isPasswordVisible = !isPasswordVisible
     }
 }

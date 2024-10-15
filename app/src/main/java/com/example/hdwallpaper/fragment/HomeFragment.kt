@@ -37,40 +37,39 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout
+
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        // Initialize RecyclerView
+
         recyclerView = binding.rvImages
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
 
         dataList = ArrayList()
 
-        // Initialize ViewModel
+
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
-        // Observe data changes from ViewModel
+
         viewModel.dataList.observe(viewLifecycleOwner, Observer { images ->
             dataList.clear()
             dataList.addAll(images)
             adapter.notifyDataSetChanged()
         })
 
-        // Observe message changes from ViewModel
+
         viewModel.message.observe(viewLifecycleOwner, Observer { message ->
             Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show()
         })
 
-        // Initialize adapter and set to RecyclerView
+
         adapter = staggeradapter(dataList, requireContext())
         recyclerView.adapter = adapter
 
-        // Check storage permission
+
         checkStoragePermission()
 
-        // Fetch images from ViewModel
         viewModel.fetchImages()
 
         return view
@@ -103,7 +102,7 @@ class HomeFragment : Fragment() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == REQUEST_CODE_STORAGE_PERMISSION) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Permission granted
+
             } else {
                 Toast.makeText(
                     requireActivity(),

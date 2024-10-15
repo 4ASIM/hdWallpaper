@@ -6,11 +6,22 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MainActivity">
+<TextView
+    android:id="@+id/textViewTitle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Dreamscape HD"
+    android:textSize="30dp"
+    android:gravity="center"
+    android:fontFamily="@font/robot"
+    android:background="@color/custom"
+    android:layout_alignParentTop="true"/>
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/vp_dashbaord"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_below="@id/textViewTitle"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"

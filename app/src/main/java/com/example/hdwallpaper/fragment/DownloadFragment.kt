@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.hdwallpaper.adapter.downloadadapter
@@ -14,6 +15,7 @@ import com.example.hdwallpaper.roomdb.ImageDao
 import com.example.hdwallpaper.roomdb.ImageEntity
 
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.launch
 
 class DownloadFragment : Fragment() {
 
@@ -51,14 +53,15 @@ class DownloadFragment : Fragment() {
     }
 
     private fun loadUserImages(email: String) {
-
         imageDao.getImagesByEmail(email).observe(viewLifecycleOwner, { images ->
             if (images != null) {
-                adapter = downloadadapter(images, requireContext())
+                adapter = downloadadapter(images.toMutableList(), requireContext(), imageDao) // Pass imageDao
                 recyclerView.adapter = adapter
             }
         })
     }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()

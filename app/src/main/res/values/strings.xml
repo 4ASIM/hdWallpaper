@@ -1,12 +1,12 @@
 <resources>
     //splashscreen
-    <string name="app_name">hdWallpaper</string>
+    <string name="app_name">Dreamscape HD</string>
     <string name="tv_appName">Dreamscape HD</string>
     <string name="tv_appline">Where Every Pixel Inspires</string>
 
 
     //Main screen string
-    <string name="tb_appname">Notes App</string>
+    <string name="tb_appname">Dreamscape HD</string>
     <string name="tb_main_wcback">Welcome Back</string>
     <string name="tb_main_signnote">Sign in to continue</string>
     <string name="et_main_emailhint">Email</string>
