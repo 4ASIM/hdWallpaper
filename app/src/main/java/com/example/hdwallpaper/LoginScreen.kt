@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.example.hdwallpaper.databinding.ActivityLoginScreenBinding
 import com.example.hdwallpaper.viewmodel.LoginViewModel
+import com.google.firebase.auth.FirebaseAuth
 
 class LoginScreen : AppCompatActivity() {
 
@@ -16,6 +17,17 @@ class LoginScreen : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
+
+        // Check if the user is already logged in
+        if (FirebaseAuth.getInstance().currentUser != null) {
+            // User is already signed in, redirect to Dashboard
+            startActivity(Intent(this, DashBoard::class.java))
+            finish()
+            return
+        }
+
 
         binding = ActivityLoginScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
