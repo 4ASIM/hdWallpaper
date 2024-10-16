@@ -3,11 +3,10 @@ package com.example.hdwallpaper.modelview
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import com.example.hdwallpaper.activity.RetrofitInstance
 import com.example.hdwallpaper.dataclasses.dataclass
 import com.example.hdwallpaper.dataclasses.pixbayclass
-import com.example.hdwallpaper.activity.RetrofitInstance
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -15,6 +14,7 @@ import retrofit2.Response
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
     val dataList = MutableLiveData<ArrayList<dataclass>>()
     val message = MutableLiveData<String>()
+
 
     fun fetchImages() {
         val apiService = RetrofitInstance.api

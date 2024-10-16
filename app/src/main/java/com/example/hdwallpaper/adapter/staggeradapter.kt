@@ -5,6 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -54,6 +55,29 @@ class staggeradapter(private val dataList: ArrayList<dataclass>, private val con
                 Toast.makeText(context, "Image URL is invalid", Toast.LENGTH_SHORT).show()
             }
         }
+
+//        holder.staggeredImages.setOnTouchListener { _, event ->
+//            val imageUrl = dataList[position].imageURL
+//            if (!imageUrl.isNullOrEmpty()) {
+//            when (event.action) {
+//                android.view.MotionEvent.ACTION_DOWN -> {
+//                    holder.downloadIcon.visibility = View.VISIBLE // Show icon
+//                    val intent = Intent(context, ImageDownloadAcitvity::class.java)
+//                    intent.putExtra("IMAGE_URL", imageUrl)
+//                    context.startActivity(intent)
+//                }
+//
+//                android.view.MotionEvent.ACTION_UP, android.view.MotionEvent.ACTION_CANCEL -> {
+//                    holder.downloadIcon.visibility = View.GONE // Hide icon after interaction
+//                }
+//
+//            }
+//
+//            }
+//
+//            true
+//        }
+
     }
 
     override fun getItemCount(): Int {
@@ -62,5 +86,6 @@ class staggeradapter(private val dataList: ArrayList<dataclass>, private val con
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var staggeredImages: RoundedImageView = itemView.findViewById(R.id.staggeredImages)
+        var downloadIcon: ImageView = itemView.findViewById(R.id.downloadIcon)
     }
 }

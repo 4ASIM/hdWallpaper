@@ -20,6 +20,8 @@ class LoginScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
 
+        binding = ActivityLoginScreenBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         if (FirebaseAuth.getInstance().currentUser != null) {
 
             startActivity(Intent(this, DashBoard::class.java))
@@ -28,8 +30,6 @@ class LoginScreen : AppCompatActivity() {
         }
 
 
-        binding = ActivityLoginScreenBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
 
         loginViewModel.loginResult.observe(this, Observer { result ->

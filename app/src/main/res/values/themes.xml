@@ -1,8 +1,10 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources xmlns:tools="http://schemas.android.com/tools" xmlns:tool="http://schemas.android.com/apk/res-auto">
     <!-- Base application theme. -->
     <style name="Base.Theme.HdWallpaper" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:statusBarColor" tool:targetApi="l">@color/custom</item>
+        <item name="android:colorPrimary">@color/custom</item>
     </style>
 
     <style name="Theme.HdWallpaper" parent="Base.Theme.HdWallpaper" />
@@ -12,10 +14,12 @@
         </item>
         <item name="android:windowActionBarOverlay">true</item>
         <item name="android:windowBackground">@null</item>
+        <item name="android:colorPrimary">@color/custom</item>
     </style>
 
     <style name="ThemeOverlay.HdWallpaper.FullscreenContainer" parent="">
         <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
         <item name="fullscreenTextColor">@color/light_blue_A200</item>
+        <item name="android:colorPrimary">@color/custom</item>
     </style>
 </resources>

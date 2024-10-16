@@ -18,7 +18,7 @@ import com.example.hdwallpaper.adapter.staggeradapter
 import com.example.hdwallpaper.dataclasses.dataclass
 import com.example.hdwallpaper.databinding.FragmentHomeBinding
 import com.example.hdwallpaper.modelview.HomeViewModel
-
+import com.tashila.pleasewait.PleaseWaitDialog
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
@@ -28,6 +28,7 @@ class HomeFragment : Fragment() {
     private lateinit var dataList: ArrayList<dataclass>
     private lateinit var adapter: staggeradapter
     private lateinit var viewModel: HomeViewModel
+    private lateinit var progressDialog: PleaseWaitDialog
 
     companion object {
         private const val REQUEST_CODE_STORAGE_PERMISSION = 100
@@ -41,6 +42,11 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val view = binding.root
 
+        progressDialog = PleaseWaitDialog(context = requireContext()).apply {
+            setTitle("Please wait")
+            setMessage("Loading...")
+            setCancelable(false)
+        }
 
         recyclerView = binding.rvImages
         recyclerView.setHasFixedSize(true)
@@ -48,25 +54,25 @@ class HomeFragment : Fragment() {
 
         dataList = ArrayList()
 
-
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
+        // Show the progress dialog when fetching images
+        progressDialog.show()
 
         viewModel.dataList.observe(viewLifecycleOwner, Observer { images ->
             dataList.clear()
             dataList.addAll(images)
             adapter.notifyDataSetChanged()
+            progressDialog.dismiss()
         })
-
 
         viewModel.message.observe(viewLifecycleOwner, Observer { message ->
             Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show()
+            progressDialog.dismiss()
         })
-
 
         adapter = staggeradapter(dataList, requireContext())
         recyclerView.adapter = adapter
-
 
         checkStoragePermission()
 
@@ -92,6 +98,7 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        progressDialog.dismiss()
     }
 
     override fun onRequestPermissionsResult(
@@ -102,7 +109,7 @@ class HomeFragment : Fragment() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == REQUEST_CODE_STORAGE_PERMISSION) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
+                // Permission granted, proceed with operation
             } else {
                 Toast.makeText(
                     requireActivity(),

@@ -28,7 +28,7 @@
         app:layout_constraintStart_toStartOf="@+id/iv_logo"
         app:layout_constraintTop_toBottomOf="@id/iv_logo"
         android:layout_marginTop="30dp"
-        android:textSize="45dp"/>
+        android:textSize="45sp"/>
 
     <TextView
         android:id="@+id/appline"
@@ -41,6 +41,6 @@
         app:layout_constraintStart_toStartOf="@+id/tv_appname"
         app:layout_constraintTop_toBottomOf="@id/tv_appname"
         android:layout_marginTop="10dp"
-        android:textSize="17dp"/>
+        android:textSize="17sp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

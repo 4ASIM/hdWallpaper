@@ -18,6 +18,9 @@
         android:theme="@style/Theme.HdWallpaper"
         tools:targetApi="31">
         <activity
+            android:name=".VideoDownloadActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.WallPaperImageset"
             android:exported="false" />
         <activity

@@ -34,7 +34,7 @@ class DashBoard : AppCompatActivity() {
         bottomNavigationView = findViewById(R.id.bottomNavigation)
 
         val fragments: List<Fragment> = listOf(
-            HomeFragment(),
+            tablayout(),
             DownloadFragment(),
             BatteryFragment()
         )
