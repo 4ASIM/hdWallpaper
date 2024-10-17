@@ -8,11 +8,14 @@ import android.os.Environment
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.hdwallpaper.databinding.ActivityVideoDownloadBinding
+import com.google.android.exoplayer2.ExoPlayer
+import com.google.android.exoplayer2.MediaItem
 
 class VideoDownloadActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityVideoDownloadBinding
     private var videoUrl: String? = null
+    private lateinit var exoPlayer: ExoPlayer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,15 +31,24 @@ class VideoDownloadActivity : AppCompatActivity() {
             return
         }
 
-        binding.VideoView.setVideoURI(Uri.parse(videoUrl))
-        binding.VideoView.start()
-        binding.VideoView.setOnErrorListener { _, what, extra ->
-            true
-        }
+        // Initialize ExoPlayer
+        exoPlayer = ExoPlayer.Builder(this).build()
+        binding.playerView.player = exoPlayer // Set the player to the PlayerView
 
+        val mediaItem = MediaItem.fromUri(Uri.parse(videoUrl))
+        exoPlayer.setMediaItem(mediaItem)
+        exoPlayer.prepare()
+        exoPlayer.playWhenReady = true // Start playing
+
+        // Download video on FAB click
         binding.fab.setOnClickListener {
             downloadVideo(videoUrl!!)
         }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        exoPlayer.release() // Release the player when activity is stopped
     }
 
     private fun downloadVideo(videoUrl: String) {

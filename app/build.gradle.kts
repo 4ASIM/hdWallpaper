@@ -48,7 +48,6 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
-    implementation("androidx.media3:media3-exoplayer:1.4.1")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
@@ -84,5 +83,8 @@ dependencies {
 
     //progressbar
     implementation ("io.github.tashilapathum:please-wait:0.5.0")
+
+    // ExoPlayer dependency
+    implementation ("com.google.android.exoplayer:exoplayer:2.18.1")
 
 }
