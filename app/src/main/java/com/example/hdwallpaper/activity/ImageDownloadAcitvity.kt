@@ -1,5 +1,4 @@
 package com.example.hdwallpaper.activity
-
 import android.Manifest
 import android.content.pm.PackageManager
 import android.graphics.Bitmap

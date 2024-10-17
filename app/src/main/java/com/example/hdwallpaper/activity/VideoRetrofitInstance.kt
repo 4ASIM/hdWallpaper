@@ -1,4 +1,3 @@
-// VideoRetrofitInstance.kt
 package com.example.hdwallpaper.activity
 
 import retrofit2.Retrofit

@@ -55,7 +55,8 @@ class VideoDownloadActivity : AppCompatActivity() {
 
             Toast.makeText(this, "Video download started", Toast.LENGTH_SHORT).show()
         } catch (e: Exception) {
-            Toast.makeText(this, "Failed to download video: ${e.message}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Failed to download video: ${e.message}", Toast.LENGTH_SHORT)
+                .show()
         }
     }
 }

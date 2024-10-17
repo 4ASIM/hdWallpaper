@@ -1,4 +1,3 @@
-// VideoApiService.kt
 package com.example.hdwallpaper.activity
 
 import com.example.hdwallpaper.dataclasses.VideoResponse
